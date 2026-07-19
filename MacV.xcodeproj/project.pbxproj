@@ -175,7 +175,7 @@
 			mainGroup = A8E313AA08DB1D72A53E489B;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				1176F5FC41AB64B2D43718F8 /* XCRemoteSwiftPackageReference "GRDB" */,
+				1176F5FC41AB64B2D43718F8 /* XCRemoteSwiftPackageReference "GRDB.swift" */,
 				BC3AFFCC76DC16A7CA0C22D2 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
 			);
 			preferredProjectObjectVersion = 77;
@@ -198,11 +198,21 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/MacV/Resources/Scripts/plain-text-only.sh",
+				"$(SRCROOT)/MacV/Resources/Scripts/json-pretty.sh",
+				"$(SRCROOT)/MacV/Resources/Scripts/json-pretty.py",
+				"$(SRCROOT)/MacV/Resources/Scripts/html-strip.sh",
+				"$(SRCROOT)/MacV/Resources/Scripts/uppercase.js",
 			);
 			name = "Organize Scripts Folder";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Scripts/plain-text-only.sh",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Scripts/json-pretty.sh",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Scripts/json-pretty.py",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Scripts/html-strip.sh",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Scripts/uppercase.js",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -246,7 +256,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2668CLF764;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = MacV/Info.plist;
@@ -388,7 +397,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2668CLF764;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = MacV/Info.plist;
@@ -425,7 +433,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1176F5FC41AB64B2D43718F8 /* XCRemoteSwiftPackageReference "GRDB" */ = {
+		1176F5FC41AB64B2D43718F8 /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/groue/GRDB.swift";
 			requirement = {
@@ -446,7 +454,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		34E7AE9DB373D19812559B04 /* GRDB */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1176F5FC41AB64B2D43718F8 /* XCRemoteSwiftPackageReference "GRDB" */;
+			package = 1176F5FC41AB64B2D43718F8 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
 			productName = GRDB;
 		};
 		ED068560E74F55424CDE5D66 /* KeyboardShortcuts */ = {

@@ -34,6 +34,18 @@ targets:
     postCompileScripts:
       - name: Organize Scripts Folder
         basedOnDependencyAnalysis: false
+        inputFiles:
+          - $(SRCROOT)/MacV/Resources/Scripts/plain-text-only.sh
+          - $(SRCROOT)/MacV/Resources/Scripts/json-pretty.sh
+          - $(SRCROOT)/MacV/Resources/Scripts/json-pretty.py
+          - $(SRCROOT)/MacV/Resources/Scripts/html-strip.sh
+          - $(SRCROOT)/MacV/Resources/Scripts/uppercase.js
+        outputFiles:
+          - $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Scripts/plain-text-only.sh
+          - $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Scripts/json-pretty.sh
+          - $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Scripts/json-pretty.py
+          - $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Scripts/html-strip.sh
+          - $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Scripts/uppercase.js
         script: |
           set -e
           RES="${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
