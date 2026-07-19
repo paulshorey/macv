@@ -17,16 +17,31 @@ xcodegen generate          # only needed after editing project.yml
 open MacV.xcodeproj
 ```
 
-In Xcode: select the **MacV** scheme → Run.
+### Signing (required for stable permissions)
 
-Or from the CLI:
+MacV is currently easy to build **ad-hoc**, but macOS TCC pins Input Monitoring / Accessibility to the binary’s code signature. Ad-hoc signatures change every rebuild, so System Settings can show “allowed” while the live check still fails.
+
+1. Xcode → **Settings → Accounts** → add your Apple ID (free is fine)
+2. Select the **MacV** target → **Signing & Capabilities**
+3. Enable **Automatically manage signing** and choose your **Team**
+4. Quit MacV completely, then **Product → Run**
+
+After that, grant permissions once; they should survive rebuilds.
+
+### Reload after code changes
+
+1. Quit MacV from the menu bar (**Quit**) or stop in Xcode (**⌘.**)
+2. **Product → Run** (**⌘R**) — rebuilds and launches
+3. If you changed permissions in System Settings: Quit MacV fully, then Run again (TCC is applied at process start)
+
+Optional cleanup if permissions are stuck after switching from ad-hoc → Team signing:
 
 ```bash
-xcodebuild -project MacV.xcodeproj -scheme MacV -configuration Debug -destination 'platform=macOS,arch=arm64' build
+tccutil reset ListenEvent com.macv.app
+tccutil reset Accessibility com.macv.app
 ```
 
-The app is a menu-bar agent (`LSUIElement`): no Dock icon.
-
+Then Run from Xcode and re-grant in System Settings.
 ## First-run setup
 
 1. Open **Settings → Permissions** and grant:

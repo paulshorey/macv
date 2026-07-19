@@ -128,7 +128,7 @@ private struct BindingEditorRow: View {
         }
         .padding(.vertical, 4)
         .onChange(of: binding) { _, newValue in
-            var updated = newValue
+            let updated = newValue
             if updated.event == .paste {
                 // Keep paste suppressed by default when event flips to paste.
             }
@@ -186,19 +186,34 @@ struct PermissionsSettingsView: View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Permissions")
                 .font(.title2)
-            Text("MacV needs these so hotkeys can suppress keys and paste into other apps. Grant them once; they persist.")
+            Text("MacV needs these so hotkeys can suppress keys and paste into other apps. Grant them once; they persist — but only if the app is signed with a stable Development Team (not ad-hoc).")
                 .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+
+            if appState.permissions.isAdHocSigned {
+                GroupBox {
+                    VStack(alignment: .leading, spacing: 6) {
+                        Label("Ad-hoc code signature detected", systemImage: "exclamationmark.triangle.fill")
+                            .foregroundStyle(.orange)
+                        Text("System Settings may show MacV as allowed while this build still fails the live check. Each Xcode rebuild can get a new signature, so TCC treats it as a different app.\n\nFix: in Xcode → MacV target → Signing & Capabilities → enable “Automatically manage signing” and pick your Team (Apple ID). Then quit MacV, rebuild, re-grant permissions once.")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            }
 
             permissionRow(
                 title: "Input Monitoring",
-                detail: "Required for CGEventTap key suppression",
+                detail: "Required for CGEventTap key suppression. Live check: \(appState.permissions.hasInputMonitoring ? "OK" : "failing")",
                 ok: appState.permissions.hasInputMonitoring,
                 request: { appState.permissions.requestInputMonitoring() },
                 open: { appState.permissions.openInputMonitoringSettings() }
             )
             permissionRow(
                 title: "Accessibility / Post Event",
-                detail: "Required to synthesize Cmd+V / Cmd+C",
+                detail: "Required to synthesize Cmd+V / Cmd+C. Live check: \(appState.permissions.hasPostEvent || appState.permissions.hasAccessibility ? "OK" : "failing")",
                 ok: appState.permissions.hasPostEvent || appState.permissions.hasAccessibility,
                 request: {
                     appState.permissions.requestPostEvent()
@@ -217,6 +232,11 @@ struct PermissionsSettingsView: View {
                 Button("Open Settings") { appState.permissions.openPasteboardSettings() }
                 Button("Refresh") { appState.permissions.refresh() }
             }
+
+            Text("After changing any toggle in System Settings, fully Quit MacV from the menu bar (not just close Settings), then Run again from Xcode. Permissions are evaluated at process start.")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
 
             Button("Refresh all") { appState.permissions.refresh() }
         }
