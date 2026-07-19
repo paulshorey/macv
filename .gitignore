@@ -1,0 +1,44 @@
+# Xcode
+DerivedData/
+build/
+*.xcuserdata
+*.xcuserstate
+xcuserdata/
+*.xccheckout
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+timeline.xctimeline
+playground.xcworkspace
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Packages/
+Package.resolved
+
+# Generated — regenerate with: xcodegen generate
+# MacV.xcodeproj/   # keep committed for convenience; regen after project.yml changes
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.dc
+.com.apple.timemachine.donotpresent
+
+# Secrets / local
+.secrets.sh
+.shortcuts.sh
+*.pem
+.env
+.env.*

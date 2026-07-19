@@ -1,0 +1,72 @@
+name: MacV
+options:
+  bundleIdPrefix: com.macv
+  deploymentTarget:
+    macOS: "14.0"
+  xcodeVersion: "16.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    ONLY_ACTIVE_ARCH: YES
+packages:
+  KeyboardShortcuts:
+    url: https://github.com/sindresorhus/KeyboardShortcuts
+    from: "2.0.0"
+  GRDB:
+    url: https://github.com/groue/GRDB.swift
+    from: "7.0.0"
+targets:
+  MacV:
+    type: application
+    platform: macOS
+    sources:
+      - path: MacV
+        excludes:
+          - Resources/**
+    resources:
+      - path: MacV/Resources/Scripts/plain-text-only.sh
+      - path: MacV/Resources/Scripts/json-pretty.sh
+      - path: MacV/Resources/Scripts/json-pretty.py
+      - path: MacV/Resources/Scripts/html-strip.sh
+      - path: MacV/Resources/Scripts/uppercase.js
+    postCompileScripts:
+      - name: Organize Scripts Folder
+        basedOnDependencyAnalysis: false
+        script: |
+          set -e
+          RES="${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
+          DEST="${RES}/Scripts"
+          mkdir -p "${DEST}"
+          for f in plain-text-only.sh json-pretty.sh json-pretty.py html-strip.sh uppercase.js; do
+            if [ -f "${RES}/${f}" ]; then
+              mv -f "${RES}/${f}" "${DEST}/${f}"
+              chmod +x "${DEST}/${f}"
+            fi
+            if [ -f "${SRCROOT}/MacV/Resources/Scripts/${f}" ]; then
+              cp -f "${SRCROOT}/MacV/Resources/Scripts/${f}" "${DEST}/${f}"
+              chmod +x "${DEST}/${f}"
+            fi
+          done
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.macv.app
+        PRODUCT_NAME: MacV
+        INFOPLIST_FILE: MacV/Info.plist
+        CODE_SIGN_ENTITLEMENTS: MacV/MacV.entitlements
+        CODE_SIGN_STYLE: Automatic
+        ENABLE_HARDENED_RUNTIME: YES
+        ARCHS: arm64
+        COMBINE_HIDPI_IMAGES: YES
+        LD_RUNPATH_SEARCH_PATHS: "@executable_path/../Frameworks"
+        GENERATE_INFOPLIST_FILE: NO
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        SWIFT_EMIT_LOC_STRINGS: YES
+    dependencies:
+      - package: KeyboardShortcuts
+      - package: GRDB
+        product: GRDB
+    scheme:
+      testTargets: []
