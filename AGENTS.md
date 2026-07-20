@@ -36,7 +36,7 @@ ClipboardMonitor (poll changeCount)
 
 | Piece | File(s) | Role |
 | --- | --- | --- |
-| App entry / menu bar | `MacV/MacVApp.swift` | `MenuBarExtra` + Settings scene; `LSUIElement` |
+| App entry / menu bar | `MacVApp.swift`, `StatusItemController.swift` | `NSStatusItem` + nonactivating panel; Settings scene; `LSUIElement` |
 | Composition root | `MacV/AppState.swift` | Wires stores, monitor, dispatcher, interceptor; start lifecycle |
 | Models | `MacV/Models/Models.swift` | Snapshots, bindings, events, pasteboard markers |
 | History | `HistoryStore.swift`, `HistoryPersistence.swift` | Append-only SQLite + active pointer |
@@ -109,6 +109,11 @@ First launch copies into `~/Library/Application Support/macv/scripts/` if missin
 
 ### 11. Unsandboxed by design
 `MacV.entitlements` has no App Sandbox. Paste synthesis / event taps need that. Do not add sandbox entitlements “for safety” without a full redesign.
+
+### 12. AppKit agent entry (not SwiftUI `App`)
+Use `@main enum MacVMain` + `NSApplication.run()` (`MacVApp.swift`). A SwiftUI `App` with only `Settings` / `MenuBarExtra` can **quit when scenes invalidate** on Tahoe — that looks like die/relaunch every few seconds, often with `FBSceneErrorDomain` / `NSStatusItemView` console noise.
+
+Status UI: `StatusItemController` uses `NSStatusItem` + **`NSMenu`** + independent history/settings windows. Do **not** attach `NSPopover` or `MenuBarExtra(.window)` to the status button (those create `…-Aux[1]-NSStatusItemView` scenes). Always return `false` from `applicationShouldTerminateAfterLastWindowClosed`. Own `AppState` on `AppDelegate`.
 
 ---
 

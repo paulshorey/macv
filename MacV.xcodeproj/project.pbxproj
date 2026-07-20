@@ -12,10 +12,12 @@
 		2CB76EF2EEF7389162DFEEF9 /* HistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73D904A2C0CA01CB96319A /* HistoryStore.swift */; };
 		4B5CF1CB1E72D147FFDFBE79 /* HotkeyInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE77E45B49F46445A62FEE8 /* HotkeyInterceptor.swift */; };
 		4C59E38BAD8DDF91BB0FED7E /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = ED068560E74F55424CDE5D66 /* KeyboardShortcuts */; };
+		50F81D98BE908BD80949DCF3 /* StatusItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C75A08EAFAC17AB3341A0E /* StatusItemController.swift */; };
 		5EA1A7461DBE09CD6E0B36B9 /* ScriptRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352BC16AFEA4FD1597FB7FA9 /* ScriptRunner.swift */; };
 		7278B52B5A82D2EB8165BC20 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 34E7AE9DB373D19812559B04 /* GRDB */; };
 		948CB55C39531FC2E0A0E924 /* ClipboardMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2A2A2AE45216C9C0C1578D /* ClipboardMonitor.swift */; };
 		9BAB4476F33B1902FAC95E8D /* AppPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = C589080BAC05487A11FE00CD /* AppPaths.swift */; };
+		A24E8927DC2A86A5DCF27AB8 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE96C2FF6A68DE1AF2E5CC5 /* SettingsPresenter.swift */; };
 		A43B3FB3E83510DBF797DAF9 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A39BA02CF7D9D668F8EDF88 /* AppState.swift */; };
 		AB8C46944BE96CD6DD89F0A4 /* HistoryBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C6C194503E6015F7DEA8F4 /* HistoryBrowserView.swift */; };
 		B85A32414054F1D07FD83C66 /* MacVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22547E5CA37B78143FFAAA9 /* MacVApp.swift */; };
@@ -33,11 +35,13 @@
 		2A39BA02CF7D9D668F8EDF88 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		2B6146EAAD8D2D2569ECDEC9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		352BC16AFEA4FD1597FB7FA9 /* ScriptRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptRunner.swift; sourceTree = "<group>"; };
+		3EE96C2FF6A68DE1AF2E5CC5 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		4BCC3F7A423B77C36B18DD83 /* MacV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		505FEBEFEB6822DA63E9F3DB /* HistoryPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPersistence.swift; sourceTree = "<group>"; };
 		69E43B401086B8DB8A35733E /* ScriptRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptRegistry.swift; sourceTree = "<group>"; };
 		820D774E46861F6242EB5B6A /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		82FAA4629BA4F342767A5FE9 /* BindingStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingStore.swift; sourceTree = "<group>"; };
+		A1C75A08EAFAC17AB3341A0E /* StatusItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemController.swift; sourceTree = "<group>"; };
 		A22547E5CA37B78143FFAAA9 /* MacVApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacVApp.swift; sourceTree = "<group>"; };
 		A83DA28802C8DFC2C0DFCBE4 /* PermissionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsManager.swift; sourceTree = "<group>"; };
 		BBE47944AA2C7BF77E92BF41 /* TransformationDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformationDispatcher.swift; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 				A83DA28802C8DFC2C0DFCBE4 /* PermissionsManager.swift */,
 				69E43B401086B8DB8A35733E /* ScriptRegistry.swift */,
 				352BC16AFEA4FD1597FB7FA9 /* ScriptRunner.swift */,
+				3EE96C2FF6A68DE1AF2E5CC5 /* SettingsPresenter.swift */,
+				A1C75A08EAFAC17AB3341A0E /* StatusItemController.swift */,
 				BBE47944AA2C7BF77E92BF41 /* TransformationDispatcher.swift */,
 			);
 			path = Services;
@@ -158,7 +164,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 2650;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					649D9605C2633D915316C9C8 = {
 						ProvisioningStyle = Automatic;
@@ -175,7 +181,7 @@
 			mainGroup = A8E313AA08DB1D72A53E489B;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				1176F5FC41AB64B2D43718F8 /* XCRemoteSwiftPackageReference "GRDB" */,
+				1176F5FC41AB64B2D43718F8 /* XCRemoteSwiftPackageReference "GRDB.swift" */,
 				BC3AFFCC76DC16A7CA0C22D2 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
 			);
 			preferredProjectObjectVersion = 77;
@@ -239,7 +245,9 @@
 				22103AF4876A050152E3B8FA /* PermissionsManager.swift in Sources */,
 				C1C64387FD0770C383D3D07C /* ScriptRegistry.swift in Sources */,
 				5EA1A7461DBE09CD6E0B36B9 /* ScriptRunner.swift in Sources */,
+				A24E8927DC2A86A5DCF27AB8 /* SettingsPresenter.swift in Sources */,
 				0723C050B7EEAD2E01E86C76 /* SettingsView.swift in Sources */,
+				50F81D98BE908BD80949DCF3 /* StatusItemController.swift in Sources */,
 				F3713904C40852DCA6FB68DD /* TransformationDispatcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,12 +258,12 @@
 		2DF4CEF61CA061F2BAA05616 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = arm64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MacV/MacV.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = MacV/Info.plist;
@@ -302,11 +310,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -321,7 +327,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -362,11 +367,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -387,7 +390,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -397,12 +399,12 @@
 		E222AF7C7D773FB322EEA596 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = arm64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MacV/MacV.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = MacV/Info.plist;
@@ -439,7 +441,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1176F5FC41AB64B2D43718F8 /* XCRemoteSwiftPackageReference "GRDB" */ = {
+		1176F5FC41AB64B2D43718F8 /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/groue/GRDB.swift";
 			requirement = {
@@ -460,7 +462,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		34E7AE9DB373D19812559B04 /* GRDB */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1176F5FC41AB64B2D43718F8 /* XCRemoteSwiftPackageReference "GRDB" */;
+			package = 1176F5FC41AB64B2D43718F8 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
 			productName = GRDB;
 		};
 		ED068560E74F55424CDE5D66 /* KeyboardShortcuts */ = {

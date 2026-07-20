@@ -1,8 +1,8 @@
 import SwiftUI
+import AppKit
 
 struct HistoryBrowserView: View {
     @Environment(AppState.self) private var appState
-    @State private var didStart = false
 
     var body: some View {
         @Bindable var state = appState
@@ -15,9 +15,12 @@ struct HistoryBrowserView: View {
                     ProgressView()
                         .controlSize(.small)
                 }
-                SettingsLink {
+                Button {
+                    SettingsPresenter.openSettings()
+                } label: {
                     Image(systemName: "gearshape")
                 }
+                .buttonStyle(.borderless)
                 .help("Settings")
             }
             .padding(.horizontal, 12)
@@ -70,17 +73,6 @@ struct HistoryBrowserView: View {
             }
             .padding(10)
         }
-        .onAppear {
-            guard !didStart else { return }
-            didStart = true
-            appState.start()
-        }
-        .onReceive(NotificationCenter.default.publisher(for: .macvShouldStartServices)) { _ in
-            if !didStart {
-                didStart = true
-                appState.start()
-            }
-        }
     }
 }
 
@@ -123,5 +115,3 @@ private struct SnapshotRow: View {
         .padding(.vertical, 2)
     }
 }
-
-import AppKit

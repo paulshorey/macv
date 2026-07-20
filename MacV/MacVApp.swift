@@ -1,38 +1,48 @@
+import AppKit
 import SwiftUI
 
+/// Pure AppKit entry — do not use SwiftUI `@main struct App` for this agent.
+/// A Settings-only SwiftUI `App` on Tahoe can terminate when scenes invalidate
+/// (status-item Aux errors coincide with that quit/relaunch loop).
 @main
-struct MacVApp: App {
-    @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
-    @State private var appState = AppState()
-
-    var body: some Scene {
-        MenuBarExtra("MacV", systemImage: "doc.on.clipboard") {
-            HistoryBrowserView()
-                .environment(appState)
-                .frame(width: 380, height: 520)
-        }
-        .menuBarExtraStyle(.window)
-
-        Settings {
-            SettingsView()
-                .environment(appState)
-                .frame(minWidth: 520, minHeight: 420)
-        }
+enum MacVMain {
+    static func main() {
+        let app = NSApplication.shared
+        let delegate = AppDelegate()
+        app.delegate = delegate
+        // Reinforce agent behavior (also set via LSUIElement in Info.plist).
+        app.setActivationPolicy(.accessory)
+        app.run()
     }
 }
 
+@MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate {
+    let appState = AppState()
+    private let statusItemController = StatusItemController()
+
     func applicationDidFinishLaunching(_ notification: Notification) {
-        // AppState.start is invoked from Settings/History appear; also start here via notification.
-        NotificationCenter.default.post(name: .macvShouldStartServices, object: nil)
+        ProcessInfo.processInfo.disableAutomaticTermination("MacV menu bar agent")
+        ProcessInfo.processInfo.disableSuddenTermination()
+
+        statusItemController.install(appState: appState)
+        appState.start()
+    }
+
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+        false
+    }
+
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        false
     }
 
     func applicationWillTerminate(_ notification: Notification) {
+        statusItemController.tearDown()
         NotificationCenter.default.post(name: .macvShouldStopServices, object: nil)
     }
 }
 
 extension Notification.Name {
-    static let macvShouldStartServices = Notification.Name("macvShouldStartServices")
     static let macvShouldStopServices = Notification.Name("macvShouldStopServices")
 }

@@ -1,4 +1,5 @@
 import SwiftUI
+import AppKit
 import KeyboardShortcuts
 
 struct SettingsView: View {
@@ -17,6 +18,8 @@ struct SettingsView: View {
         }
         .padding()
         .environment(appState)
+        // Dev convenience: select/copy labels and help text when talking to engineers.
+        .textSelection(.enabled)
         .onAppear {
             appState.permissions.refresh()
             appState.scriptRegistry.reload()

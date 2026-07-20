@@ -17,6 +17,7 @@ final class AppState {
 
     var searchText = ""
     var launchesAtLogin = false
+    private var didStart = false
 
     init() {
         let historyStore = HistoryStore()
@@ -44,6 +45,10 @@ final class AppState {
     }
 
     func start() {
+        // Status-item panel views can be recreated; services must start only once per process.
+        guard !didStart else { return }
+        didStart = true
+
         permissions.refresh()
 
         clipboardMonitor.onNewClipboardContent = { [weak self] snapshot in
